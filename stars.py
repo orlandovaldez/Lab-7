@@ -5,7 +5,6 @@ import turtle
 '''
     - Add loop function to definition
     - Add main def
-    
 '''
 
 numStars = int(input("How many stars would you like to draw?(1-50): "))
