@@ -1,19 +1,14 @@
 import random
 import turtle
 
-#TODO
-'''
-    - Add loop function to definition
-    - Add main def
-'''
-
 numStars = int(input("How many stars would you like to draw?(1-50): "))
-window  = turtle.Screen()
-window.bgcolor("black")
-
 star = turtle.Turtle()
 random_length = random.randrange(140,360, 30)
-turtle.colormode(255)
+
+def initialStart():
+    '''Starts up the program and asks for star input, Setting up window and bg color'''    
+    window  = turtle.Screen()
+    window.bgcolor("black")
 
 def draw_star():
     '''Draws a star'''
@@ -21,20 +16,24 @@ def draw_star():
         star.forward(random_length)
         star.right(144)
 
-#for loop to draw stars based on the input by user
+def drawInput():
+    '''for loop to draw stars based on the input by user'''
+    for count in range(numStars):
+        turtle.colormode(255)
+        star.color(random.randint(0,255),
+                random.randint(0,255),
+                random.randint(0,255))
+        star.begin_fill()
+        draw_star()
+        star.end_fill()
+        star.penup()
+        star.goto(random.randint(-500, 500), random.randint(-400, 400))
+        star.pendown()
+    star.hideturtle()
 
-for count in range(numStars):
-    star.color(random.randint(0,255),
-            random.randint(0,255),
-            random.randint(0,255))
+def main():
+    initialStart()
+    drawInput()
 
-    star.begin_fill()
-    draw_star()
-    star.end_fill()
-    star.penup()
-    star.goto(random.randint(-500, 500), random.randint(-400, 400))
-    star.pendown()
-
-
-star.hideturtle()
+main()
 turtle.done()

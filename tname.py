@@ -1,30 +1,41 @@
-import turtle
+from itertools import cycle
 import random
+from tkinter import colorchooser
+import turtle
+
+from pip import main
 
 window = turtle.Screen()
 window.bgcolor("Beige")
-turtle.colormode(255)
 
-def colorChange():
+def colorChange(string):
     '''Change the color of the text in turtle randomly'''
-    turtle.color(random.randint(0,255),
-            random.randint(0,255),
-            random.randint(0,255))
+    colorBank = ["Red","Blue","Green","Orange","Purple","Yellow"]
+    color = cycle(colorBank)
 
-style = ('Arial', 200, 'normal')
-
-turtle.setpos(-10,100)
-colorChange()
-turtle.write('FREE',font = style, align = 'center')
-turtle.penup()
-turtle.setpos(0,-100)
-colorChange()
-turtle.pendown()
-turtle.write('BILLY',font = style, align = 'center')
-turtle.setpos(55,-300)
-colorChange()
-turtle.write('WILLY',font = style, align = 'center')
+    for i in string:
+        turtle.color(next(color))
+        style = ('Arial', 200, 'normal')
+        turtle.write(i, move = True, font = style, align = 'left')
 
 
+def freeWilly():
+    '''Writes FREE BILLY WILL using turtle out to the screen
+       while alternating colors'''
+    turtle.penup()
+    turtle.setpos(-350,120)
+    colorChange("FREE")
+    turtle.penup()
+    turtle.setpos(-350,-100)
+    colorChange("BILLY")
+    turtle.penup()
+    turtle.setpos(-335,-320)
+    colorChange("WILLY")
+    turtle.hideturtle()
 
+def main():
+    freeWilly()
+
+
+main()
 turtle.done()
